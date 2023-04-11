@@ -26,7 +26,7 @@ import java.util.List;
  * @since 2023年04月09日
  */
 @RestController
-@RequestMapping
+@RequestMapping("/wechat")
 @Api(tags = AdminSwaggerTagConst.SctdFish.ANGLING_DETAIL)
 public class AnglingDetailController {
     @Autowired
