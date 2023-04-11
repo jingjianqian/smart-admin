@@ -57,7 +57,6 @@ public class UserController {
 
     @PostMapping("/login")
     public Result login(){
-
         return new Result(ResultEnum.SUCCESS.getCode(),"登录成功!",null);
     }
 

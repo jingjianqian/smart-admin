@@ -1,11 +1,13 @@
 package net.lab1024.sa.admin.module.business.SctdFish.Angling.service.impl;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.lab1024.sa.admin.module.business.SctdFish.Angling.dao.AgriculturalPromotionMapper;
 import net.lab1024.sa.admin.module.business.SctdFish.Angling.domain.AgriculturalPromotion;
 import net.lab1024.sa.admin.module.business.SctdFish.Angling.domain.AnglingInfo;
 import net.lab1024.sa.admin.module.business.SctdFish.Angling.service.AgriculturalPromotionService;
+import net.lab1024.sa.common.common.domain.PageResult;
 import net.lab1024.sa.common.common.domain.QueryPageBean;
 import net.lab1024.sa.common.common.domain.Result;
 import net.lab1024.sa.common.common.validator.enumeration.EnumValidator;
@@ -49,24 +51,60 @@ public class AgriculturalPromotionServiceImpl extends ServiceImpl<AgriculturalPr
     @Override
     public Result queryByPage(QueryPageBean queryPageBean) {
         Integer pageSize = queryPageBean.getPageSize();
-        queryPageBean.getCurrentPage();
-        return null;
+        Integer currentPage = queryPageBean.getCurrentPage();
+        Page page = new Page(currentPage,pageSize);
+        page = this.page(page, null);
+        PageResult pageResult = new PageResult<AgriculturalPromotion>(page.getCurrent(), page.getSize(), page.getTotal(), page.getPages(), page.getRecords(), page.getRecords().isEmpty());
+        return new Result<PageResult>(200,"分页查询成功!",pageResult);
     }
 
     @Override
     public Result add(AgriculturalPromotion agriculturalPromotion) {
-        return null;
+        try {
+            boolean b = this.save(agriculturalPromotion);
+            if (b){
+                return new Result<>(200,"添加成功!",null);
+            }else{
+                return new Result<>(403,"添加失败!",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result<>(403,"添加时出现异常!",null);
+        }
+
+
     }
 
     @Override
     public Result edit(AgriculturalPromotion agriculturalPromotion) {
-        return null;
+        try{
+        boolean b = this.updateById(agriculturalPromotion);
+            if (b){
+                return new Result<>(200,"修改成功!",null);
+            }else{
+                return new Result<>(403,"修改失败!",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result<>(403,"修改时出现异常!",null);
+        }
+
     }
 
 
     @Override
     public Result delete(Long Id) {
-        return null;
+        try{
+        boolean b = this.removeById(Id);
+            if (b){
+                return new Result<>(200,"修改成功!",null);
+            }else{
+                return new Result<>(403,"修改失败!",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result<>(403,"修改时出现异常!",null);
+        }
     }
 
     /**
