@@ -35,6 +35,9 @@ public class PageParam {
     @ApiModelProperty("是否查询总条数")
     protected Boolean searchCount;
 
+    @ApiModelProperty("查询条件(可以为空)")
+    protected String[] queryTerms;
+
     @ApiModelProperty("排序字段集合")
     @Size(max = 10, message = "排序字段最多10")
     @Valid

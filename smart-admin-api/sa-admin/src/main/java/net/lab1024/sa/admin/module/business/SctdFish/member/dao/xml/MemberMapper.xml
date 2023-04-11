@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.dao.MemberMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yy.entity.Member">
+        <id column="id" property="id" />
+        <result column="userId" property="userId" />
+        <result column="state" property="state" />
+        <result column="isMember" property="isMember" />
+        <result column="isForbid" property="isForbid" />
+        <result column="forbidStartTime" property="forbidStartTime" />
+        <result column="forbidEndTime" property="forbidEndTime" />
+        <result column="forbidDuration" property="forbidDuration" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, userId, state, isMember, isForbid, forbidStartTime, forbidEndTime, forbidDuration
+    </sql>
+
+</mapper>

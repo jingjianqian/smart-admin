@@ -1,7 +1,9 @@
 package net.lab1024.sa.common.common.domain;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
  * @Copyright 1024创新实验室 （ https://1024lab.net ）
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PageResult<T> {
 
     /**
@@ -50,4 +54,6 @@ public class PageResult<T> {
     @ApiModelProperty("是否为空")
     private Boolean emptyFlag;
 
+
+   
 }

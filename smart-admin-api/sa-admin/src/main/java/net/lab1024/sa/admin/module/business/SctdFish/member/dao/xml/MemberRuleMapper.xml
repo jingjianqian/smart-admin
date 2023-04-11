@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.dao.MemberRuleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yy.entity.MemberRule">
+        <id column="id" property="id" />
+        <result column="benefit" property="benefit" />
+        <result column="content" property="content" />
+        <result column="annualFee" property="annualFee" />
+        <result column="isCanJoin" property="isCanJoin" />
+        <result column="joinStartTime" property="joinStartTime" />
+        <result column="joinEndTime" property="joinEndTime" />
+        <result column="joinDuration" property="joinDuration" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, benefit, content, annualFee, isCanJoin, joinStartTime, joinEndTime, joinDuration
+    </sql>
+
+</mapper>

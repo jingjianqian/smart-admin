@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.dao.TeamFishMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yy.entity.TeamFish">
+        <id column="id" property="id" />
+        <result column="anglingName" property="anglingName" />
+        <result column="address" property="address" />
+        <result column="location" property="location" />
+        <result column="distance" property="distance" />
+        <result column="startTime" property="startTime" />
+        <result column="endTime" property="endTime" />
+        <result column="fishName" property="fishName" />
+        <result column="activityDetail" property="activityDetail" />
+        <result column="cost" property="cost" />
+        <result column="isFinishPay" property="isFinishPay" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, anglingName, address, location, distance, startTime, endTime, fishName, activityDetail, cost, isFinishPay
+    </sql>
+
+</mapper>

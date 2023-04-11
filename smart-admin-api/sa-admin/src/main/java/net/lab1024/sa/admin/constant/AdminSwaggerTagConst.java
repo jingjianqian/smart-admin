@@ -27,6 +27,19 @@ public class AdminSwaggerTagConst extends SwaggerTagConst {
         public static final String OA_NOTICE = "OA办公-通知公告";
     }
 
+    public static class  SctdFish{
+        public static final String PROMOTION = "助农推广表";
+
+        public static final String ANGLING_DETAIL = "钓场";
+
+        public static final String ANGLING_ACTIVITY = "钓场-活动";
+
+        public static final String ANGLING_INFO = "钓场-通知";
+
+        public static final String ANGLING_MESSAGE = "钓场-讯息";
+
+    }
+
 
     public static class System {
 
