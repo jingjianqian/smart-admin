@@ -144,6 +144,7 @@ public class UrlConfig {
         ignoreUrlList.add("/webjars/**");
         ignoreUrlList.add("/druid/**");
         ignoreUrlList.add("/*/api-docs");
+        ignoreUrlList.add("/wechat/*");
         return ignoreUrlList;
     }
 
