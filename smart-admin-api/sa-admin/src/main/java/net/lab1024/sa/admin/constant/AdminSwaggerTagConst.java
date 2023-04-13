@@ -38,6 +38,9 @@ public class AdminSwaggerTagConst extends SwaggerTagConst {
 
         public static final String ANGLING_MESSAGE = "钓场-讯息";
 
+        public static final String DICT_DETAIL = "字典-详情";
+
+        public static final String DICT_TYPE = "字典-类型";
     }
 
 

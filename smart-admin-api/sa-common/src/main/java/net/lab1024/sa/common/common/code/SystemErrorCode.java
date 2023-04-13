@@ -17,7 +17,6 @@ import lombok.Getter;
 public enum SystemErrorCode implements ErrorCode {
 
     SYSTEM_ERROR(10001, "系统似乎出现了点小问题"),
-
     ;
 
     private final int code;

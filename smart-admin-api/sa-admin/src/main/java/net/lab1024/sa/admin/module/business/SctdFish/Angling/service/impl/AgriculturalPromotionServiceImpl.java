@@ -10,6 +10,7 @@ import net.lab1024.sa.admin.module.business.SctdFish.Angling.service.Agricultura
 import net.lab1024.sa.common.common.domain.PageResult;
 import net.lab1024.sa.common.common.domain.QueryPageBean;
 import net.lab1024.sa.common.common.domain.Result;
+import net.lab1024.sa.common.common.enumeration.ResultEnum;
 import net.lab1024.sa.common.common.validator.enumeration.EnumValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,13 +40,13 @@ public class AgriculturalPromotionServiceImpl extends ServiceImpl<AgriculturalPr
     @Override
     public Result queryList() {
         List<AgriculturalPromotion> list = this.list();
-        return new Result<>(200, "查询成功!", list);
+        return new Result<>(ResultEnum.SUCCESS.getCode(), "查询成功!", list);
     }
 
     @Override
     public Result queryById(Long Id) {
         AgriculturalPromotion agriculturalPromotion = this.getById(Id);
-        return new Result<>(200, "查询成功!", agriculturalPromotion);
+        return new Result<>(ResultEnum.SUCCESS.getCode(), "查询成功!", agriculturalPromotion);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class AgriculturalPromotionServiceImpl extends ServiceImpl<AgriculturalPr
         Page page = new Page(currentPage,pageSize);
         page = this.page(page, null);
         PageResult pageResult = new PageResult<AgriculturalPromotion>(page.getCurrent(), page.getSize(), page.getTotal(), page.getPages(), page.getRecords(), page.getRecords().isEmpty());
-        return new Result<PageResult>(200,"分页查询成功!",pageResult);
+        return new Result<PageResult>(ResultEnum.SUCCESS.getCode(),"分页查询成功!",pageResult);
     }
 
     @Override
@@ -63,13 +64,13 @@ public class AgriculturalPromotionServiceImpl extends ServiceImpl<AgriculturalPr
         try {
             boolean b = this.save(agriculturalPromotion);
             if (b){
-                return new Result<>(200,"添加成功!",null);
+                return new Result<>(ResultEnum.SUCCESS.getCode(),"添加成功!",null);
             }else{
-                return new Result<>(403,"添加失败!",null);
+                return new Result<>(ResultEnum.ERROR.getCode(),"添加失败!",null);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result<>(403,"添加时出现异常!",null);
+            return new Result<>(ResultEnum.ERROR.getCode(),"添加时出现异常!",null);
         }
 
 

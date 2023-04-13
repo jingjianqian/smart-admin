@@ -36,42 +36,36 @@ public class AnglingInfoController {
 
     @GetMapping("/AnglingInfo")
     @ApiOperation("查询所有数据 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingInfo:queryList')")
     public Result<List<AnglingInfo>> queryList(){
         return Service.queryList();
     }
 
     @GetMapping("/AnglingInfo/{id}")
     @ApiOperation("根据id查询数据 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingInfo:queryById')")
     public Result<AnglingInfo> queryById(@PathVariable("id") Long id){
         return Service.queryById(id);
     }
 
     @PostMapping("/AnglingInfo")
     @ApiOperation("添加 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingInfo:add')")
     public Result<AnglingInfo> add(AnglingInfo info){
         return Service.add(info);
     }
 
-    @PutMapping("/AnglingInfo")
+    @PostMapping("/AnglingInfo/update")
     @ApiOperation("修改 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingInfo:edit')")
     public Result edit(AnglingInfo info){
         return Service.edit(info);
     }
 
-    @DeleteMapping("/AnglingInfo/{id}")
+    @GetMapping("/AnglingInfo/delete/{id}")
     @ApiOperation("删除 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingInfo:delete')")
     public Result DeleteById(@PathVariable("id") Long id) {
         return Service.delete(id);
     }
 
     @GetMapping("/AnglingInfo/findPage")
     @ApiOperation("分页查询 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingInfo:findPage')")
     public Result findPage(QueryPageBean pageParam){
         return Service.queryByPage(pageParam);
     }

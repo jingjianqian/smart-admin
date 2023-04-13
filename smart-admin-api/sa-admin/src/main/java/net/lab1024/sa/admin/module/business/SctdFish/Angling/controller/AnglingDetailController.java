@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -35,42 +36,36 @@ public class AnglingDetailController {
 
     @GetMapping("/AnglingDetail")
     @ApiOperation("查询所有数据 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingDetail:List')")
     public Result<List<AnglingDetail>> queryList(){
         return Service.queryList();
     }
 
     @GetMapping("/AnglingDetail/{id}")
     @ApiOperation("根据id查询数据 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingDetail:queryById')")
     public Result<AnglingDetail> queryById(@PathVariable("id") Long id){
         return Service.queryById(id);
     }
 
     @PostMapping("/AnglingDetail")
     @ApiOperation("添加 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingDetail:add')")
     public Result<AnglingDetail> add(AnglingDetail detail){
         return Service.add(detail);
     }
 
-    @PutMapping("/AnglingDetail")
+    @PostMapping("/AnglingDetail/update")
     @ApiOperation("修改 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingDetail:edit')")
     public Result edit(AnglingDetail detail){
         return Service.edit(detail);
     }
 
-    @DeleteMapping("/AnglingDetail/{id}")
+    @GetMapping("/AnglingDetail/delete/{id}")
     @ApiOperation("删除 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingDetail:delete')")
     public Result DeleteById(@PathVariable("id") Long id) {
         return Service.delete(id);
     }
 
     @GetMapping("/AnglingDetail/findPage")
     @ApiOperation("分页查询 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingDetail:findPage')")
     public Result findPage(QueryPageBean pageParam){
         return Service.queryByPage(pageParam);
     }

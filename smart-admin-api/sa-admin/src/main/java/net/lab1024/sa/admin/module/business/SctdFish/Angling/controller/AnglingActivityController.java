@@ -11,6 +11,7 @@ import net.lab1024.sa.admin.module.business.SctdFish.Angling.service.Agricultura
 import net.lab1024.sa.admin.module.business.SctdFish.Angling.service.AnglingActivityService;
 import net.lab1024.sa.common.common.domain.PageResult;
 import net.lab1024.sa.common.common.domain.QueryPageBean;
+import net.lab1024.sa.common.common.domain.ResponseDTO;
 import net.lab1024.sa.common.common.domain.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,43 +36,37 @@ public class AnglingActivityController {
 
         @GetMapping("/AnglingActivity")
         @ApiOperation("查询所有数据 @author 鑫")
-        @PreAuthorize("@saAuth.checkPermission('AnglingActivity:queryList')")
-        public Result<List<AnglingActivity>> queryList(){
+        public ResponseDTO<List<AnglingActivity>> queryList(){
             return Service.queryList();
         }
 
         @GetMapping("/AnglingActivity/{id}")
         @ApiOperation("根据id查询数据 @author 鑫")
-        @PreAuthorize("@saAuth.checkPermission('AnglingActivity:queryById')")
-        public Result<AnglingActivity> queryById(@PathVariable("id") Long id){
+        public ResponseDTO<AnglingActivity> queryById(@PathVariable("id") Long id){
             return Service.queryById(id);
         }
 
         @PostMapping("/AnglingActivity")
         @ApiOperation("添加 @author 鑫")
-        @PreAuthorize("@saAuth.checkPermission('AnglingActivity:add')")
-        public Result<AgriculturalPromotion> add(AnglingActivity activity){
+        public ResponseDTO<String> add(AnglingActivity activity){
             return Service.add(activity);
         }
 
-        @PutMapping("/AnglingActivity")
+        @PostMapping("/AnglingActivity/update")
         @ApiOperation("修改 @author 鑫")
-        @PreAuthorize("@saAuth.checkPermission('AnglingActivity:edit')")
-        public Result edit(AnglingActivity activity){
+        public ResponseDTO<String> edit(AnglingActivity activity){
             return Service.edit(activity);
         }
 
-        @DeleteMapping("/AnglingActivity/{id}")
+        @GetMapping("/AnglingActivity/delete/{id}")
         @ApiOperation("删除 @author 鑫")
-        @PreAuthorize("@saAuth.checkPermission('AnglingActivity:delete')")
-        public Result DeleteById(@PathVariable("id") Long id) {
+        public ResponseDTO<String> DeleteById(@PathVariable("id") Long id) {
             return Service.delete(id);
         }
 
-        @GetMapping("/AnglingActivity/findPage")
+        @PostMapping("/AnglingActivity/findPage")
         @ApiOperation("分页查询 @author 鑫")
-        @PreAuthorize("@saAuth.checkPermission('AnglingActivity:findPage')")
-        public Result findPage(QueryPageBean pageParam){
+        public ResponseDTO<PageResult<AnglingActivity>> findPage(QueryPageBean pageParam){
             return Service.queryByPage(pageParam);
         }
 }

@@ -46,19 +46,22 @@ public class AnglingActivity implements Serializable {
      * 活动创建时间
      */
     @TableField("createTime")
-    private Long createTime;
+    private String createTime;
 
     /**
      * 活动更新时间
      */
     @TableField("updateTime")
-    private Long updateTime;
+    private String updateTime;
 
     /**
      * 是否删除：0-否  1-是
      */
     @TableField("isDelete")
+    @TableLogic(value = "0",delval = "1")
     private Integer isDelete;
+
+
 
 
 }

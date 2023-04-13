@@ -13,7 +13,9 @@ import net.lab1024.sa.common.common.constant.RequestHeaderConst;
 import net.lab1024.sa.common.common.domain.ResponseDTO;
 import net.lab1024.sa.common.common.util.SmartRequestUtil;
 import net.lab1024.sa.common.module.support.captcha.domain.CaptchaVO;
+import org.apache.commons.compress.utils.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 员工登录
@@ -86,5 +92,6 @@ public class LoginController {
     public ResponseDTO<CaptchaVO> getCaptcha() {
         return loginService.getCaptcha();
     }
+
 
 }

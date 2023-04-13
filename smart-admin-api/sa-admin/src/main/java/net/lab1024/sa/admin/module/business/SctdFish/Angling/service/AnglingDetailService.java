@@ -43,7 +43,7 @@ public interface AnglingDetailService extends IService<AnglingDetail> {
     Result add(AnglingDetail detail);
 
     /**
-     * 传入助农推广表实体类,根据实体类中的ID进行修改
+     * 传入钓场实体类,根据实体类中的ID进行修改
      * @param detail
      * @return Result
      */

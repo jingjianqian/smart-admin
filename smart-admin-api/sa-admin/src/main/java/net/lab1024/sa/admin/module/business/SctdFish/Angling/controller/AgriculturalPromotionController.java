@@ -37,56 +37,48 @@ public class AgriculturalPromotionController {
 
     @GetMapping("/agriculturalPromotion")
     @ApiOperation("查询所有数据 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('agriculturalPromotion:queryList')")
     public Result<List<AgriculturalPromotion>> queryList(){
         return Service.queryList();
     }
 
     @GetMapping("/agriculturalPromotion/{id}")
     @ApiOperation("根据id查询数据 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('agriculturalPromotion:queryById')")
     public Result<AgriculturalPromotion> queryById(@PathVariable("id") Long id){
         return Service.queryById(id);
     }
 
     @PostMapping("/agriculturalPromotion")
     @ApiOperation("添加 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('agriculturalPromotion:add')")
     public Result<AgriculturalPromotion> add(AgriculturalPromotion promotion){
         return Service.add(promotion);
     }
 
-    @PutMapping("/agriculturalPromotion")
+    @PostMapping("/agriculturalPromotion/update")
     @ApiOperation("修改 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('agriculturalPromotion:edit')")
     public Result edit(AgriculturalPromotion promotion){
         return Service.edit(promotion);
     }
 
-    @DeleteMapping("/{id}")
+    @GetMapping("/agriculturalPromotion/delete/{id}")
     @ApiOperation("删除 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('agriculturalPromotion:delete')")
     public Result DeleteById(@PathVariable("id") Long id){
         return Service.delete(id);
     }
 
-    @GetMapping("/findPage")
+    @GetMapping("/agriculturalPromotion/findPage")
     @ApiOperation("分页查询 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('agriculturalPromotion:queryByPage')")
     public Result findPage(QueryPageBean pageParam){
         return Service.queryByPage(pageParam);
     }
 
     @PostMapping("/agriculturalPromotion/uploadImg")
     @ApiOperation("上传图片 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('agriculturalPromotion:loadImg')")
     public Result uploadFile(MultipartFile file) {
         return Service.upload_PromotionImg(file);
 
     }
     @PostMapping("/agriculturalPromotion/loadImg")
     @ApiOperation("加载图片 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('agriculturalPromotion:loadImg')")
     public Result download(String Path, HttpServletResponse response){
         return Service.Download_Images(Path,response);
     }

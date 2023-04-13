@@ -8,9 +8,16 @@ import net.lab1024.sa.admin.module.business.SctdFish.Angling.dao.AnglingActivity
 import net.lab1024.sa.admin.module.business.SctdFish.Angling.domain.AgriculturalPromotion;
 import net.lab1024.sa.admin.module.business.SctdFish.Angling.domain.AnglingActivity;
 import net.lab1024.sa.admin.module.business.SctdFish.Angling.service.AnglingActivityService;
+import net.lab1024.sa.admin.module.business.goods.domain.vo.GoodsVO;
+import net.lab1024.sa.common.common.code.ErrorCode;
+import net.lab1024.sa.common.common.code.ErrorCodeRegister;
+import net.lab1024.sa.common.common.code.SystemErrorCode;
+import net.lab1024.sa.common.common.code.UserErrorCode;
 import net.lab1024.sa.common.common.domain.PageResult;
 import net.lab1024.sa.common.common.domain.QueryPageBean;
+import net.lab1024.sa.common.common.domain.ResponseDTO;
 import net.lab1024.sa.common.common.domain.Result;
+import net.lab1024.sa.common.common.util.SmartPageUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,73 +34,83 @@ import java.util.List;
 public class AnglingActivityServiceImpl extends ServiceImpl<AnglingActivityMapper, AnglingActivity> implements AnglingActivityService {
 
     @Override
-    public Result queryList() {
+    public ResponseDTO<List<AnglingActivity>>  queryList() {
         List<AnglingActivity> list = this.list();
-        return new Result<>(200, "查询成功!", list);
+        return  ResponseDTO.ok(list);
+
     }
 
     @Override
-    public Result queryById(Long Id) {
+    public ResponseDTO<AnglingActivity> queryById(Long Id) {
         AnglingActivity activity = this.getById(Id);
-        return new Result<>(200, "查询成功!", activity);
+        return ResponseDTO.ok(activity);
     }
 
     @Override
-    public Result queryByPage(QueryPageBean queryPageBean) {
+    public ResponseDTO<PageResult<AnglingActivity>> queryByPage(QueryPageBean queryPageBean) {
         Integer pageSize = queryPageBean.getPageSize();
         Integer currentPage = queryPageBean.getCurrentPage();
         Page page = new Page(currentPage,pageSize);
+
+        //执行分页查询
         page = this.page(page, null);
-        PageResult pageResult = new PageResult<AnglingActivity>(page.getCurrent(), page.getSize(), page.getTotal(), page.getPages(), page.getRecords(), page.getRecords().isEmpty());
-        return new Result<PageResult>(200,"分页查询成功!",pageResult);
+
+        //获取分页查询后的数据
+        List<AnglingActivity> list = page.getRecords();
+        PageResult<AnglingActivity> pageResult = SmartPageUtil.convert2PageResult(page, list);
+
+        if (pageResult.getEmptyFlag()) {
+            return ResponseDTO.ok(pageResult);
+        }
+        return ResponseDTO.ok(pageResult);
     }
 
     @Override
-    public Result add(AnglingActivity activity) {
+    public ResponseDTO<String> add(AnglingActivity activity) {
         try {
             boolean b = this.save(activity);
             if (b){
-                return new Result<>(200,"添加成功!",null);
+                return  ResponseDTO.okMsg("添加成功!");
             }else{
-                return new Result<>(403,"添加失败!",null);
+                return  ResponseDTO.error(UserErrorCode.PARAM_ERROR);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result<>(403,"添加时出现异常!",null);
+            return ResponseDTO.error(SystemErrorCode.SYSTEM_ERROR);
         }
 
 
     }
 
     @Override
-    public Result edit(AnglingActivity activity) {
+    public ResponseDTO<String> edit(AnglingActivity activity) {
         try{
             boolean b = this.updateById(activity);
             if (b){
-                return new Result<>(200,"修改成功!",null);
+                return  ResponseDTO.okMsg("编辑成功!");
             }else{
-                return new Result<>(403,"修改失败!",null);
+                return  ResponseDTO.error(UserErrorCode.PARAM_ERROR);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result<>(403,"修改时出现异常!",null);
+            return ResponseDTO.error(SystemErrorCode.SYSTEM_ERROR);
         }
 
     }
 
 
     @Override
-    public Result delete(Long Id) {
+    public ResponseDTO<String> delete(Long Id) {
         try{
             boolean b = this.removeById(Id);
             if (b){
-                return new Result<>(200,"修改成功!",null);
+                return  ResponseDTO.okMsg("删除成功!");
             }else{
-                return new Result<>(403,"修改失败!",null);
+                return  ResponseDTO.error(UserErrorCode.PARAM_ERROR);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result<>(403,"修改时出现异常!",null);
+            return ResponseDTO.error(SystemErrorCode.SYSTEM_ERROR);
         }
     }
 }

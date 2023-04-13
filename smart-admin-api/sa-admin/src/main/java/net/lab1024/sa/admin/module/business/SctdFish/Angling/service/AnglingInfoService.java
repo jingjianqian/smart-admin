@@ -35,7 +35,7 @@ public interface AnglingInfoService extends IService<AnglingInfo> {
     Result queryByPage(QueryPageBean queryPageBean);
 
     /**
-     * 传入钓场活动实体类,返回响应结果
+     * 传入钓场通知实体类,返回响应结果
      * @param info
      * @return Result
      */

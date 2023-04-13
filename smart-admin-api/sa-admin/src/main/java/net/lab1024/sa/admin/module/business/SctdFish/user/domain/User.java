@@ -2,6 +2,7 @@ package net.lab1024.sa.admin.module.business.SctdFish.user.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
@@ -111,6 +112,7 @@ public class User implements Serializable {
      * 删除状态：0-否，1-是
      */
     @TableField("isDelete")
+    @TableLogic(value = "0",delval = "1")
     private Integer isDelete;
 
 

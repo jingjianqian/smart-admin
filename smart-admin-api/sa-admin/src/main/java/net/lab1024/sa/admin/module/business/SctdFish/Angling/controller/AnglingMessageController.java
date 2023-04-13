@@ -35,42 +35,36 @@ public class AnglingMessageController {
 
     @GetMapping("/AnglingMessage")
     @ApiOperation("查询所有数据 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingMessage:getList')")
     public Result<List<AnglingMessage>> getList(){
         return Service.queryList();
     }
 
     @GetMapping("/AnglingMessage/{id}")
     @ApiOperation("根据id查询数据 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingMessage:getById')")
     public Result<AnglingMessage> getById(@PathVariable("id") Long id){
         return Service.queryById(id);
     }
 
     @PostMapping("/AnglingMessage")
     @ApiOperation("添加 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingMessage:add')")
     public Result<AnglingMessage> add(AnglingMessage activity){
         return Service.add(activity);
     }
 
-    @PutMapping("/AnglingMessage")
+    @PostMapping("/AnglingMessage/update")
     @ApiOperation("修改 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingMessage:edit')")
     public Result edit(AnglingMessage activity){
         return Service.edit(activity);
     }
 
-    @DeleteMapping("/AnglingMessage/{id}")
+    @GetMapping("/AnglingMessage/delete/{id}")
     @ApiOperation("删除 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingMessage:delete')")
     public Result DeleteById(@PathVariable("id") Long id) {
         return Service.delete(id);
     }
 
     @GetMapping("/AnglingMessage/findPage")
     @ApiOperation("分页查询 @author 鑫")
-    @PreAuthorize("@saAuth.checkPermission('AnglingMessage:findPage')")
     public Result findPage(QueryPageBean pageParam){
         return Service.queryByPage(pageParam);
     }
